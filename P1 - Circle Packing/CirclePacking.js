@@ -40,6 +40,7 @@ function draw(){
     
     for(var c = 0; c < circles.length; c++){
         circles[c].growCircle();
+        
         circles[c].render();
     }
     
@@ -105,7 +106,7 @@ function circle(x,y,r){
             grow = false;
         }
         if(grow){
-            radius ++;
+            radius += 0.001;
         }
     }
     
