@@ -1,13 +1,31 @@
 var circles = [];
 var initialCircles = 10;
+var inputt;
 var img;
+var but;
 
 function preload(){
-    img = loadImage("earthFromLiveScience.jpg");
+    img = loadImage("https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg");
     img.loadPixels();
+    inputt = createInput('');
+    but = createButton("change");
+    but.mousePressed(changeImg);
+}
+
+function changeImg(){
+    var newImg = loadImage(inputt.value());
+    if(newImg != null){
+        img = newImg;
+        img.loadPixels();
+        circles = [];
+        setup();
+    }else{
+        return;
+    }
 }
 
 function setup(){
+    console.log(img.width +"|"+ img.height);
 	createCanvas(img.width,img.height);
     for(var i = 0; i < initialCircles; i++){
         var x = random(width);
@@ -106,7 +124,7 @@ function circle(x,y,r){
             grow = false;
         }
         if(grow){
-            radius += 0.001;
+            radius += 0.1;
         }
     }
     
